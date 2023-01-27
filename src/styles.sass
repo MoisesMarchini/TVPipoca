@@ -1,12 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bootstrap/scss/bootstrap.scss"
+@import "../node_modules/@iconscout/unicons/css/solid.css"
+@import "../node_modules/@iconscout/unicons/css/line.css"
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;700&family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@100;400;700&display=swap')
 
-body
-  box-sizing: border-box
+// font-family: 'Montserrat', sans-serif;
+// font-family: 'Roboto', sans-serif;
+// font-family: 'Roboto Condensed', sans-serif;
 
 :root
   --card-movie-width: 225px
   --card-movie-height: 330px
+  --card-movie-width-sm: 112px
+  --card-movie-height-sm: 165px
 
   --color-primary: #24292f
 
@@ -17,8 +23,26 @@ body
   --color-green: rgb(0, 128, 55)
   --color-gray: rgb(115, 115, 115)
 
+  --font-family-header: 'Roboto Condensed', sans-serif
+  --font-family-primary: 'Roboto', sans-serif
+  --font-family-alt: 'Montserrat', sans-serif
+
+  --navbar-height: 4rem
+
+body
+  box-sizing: border-box
+  font-family: var(--font-family-header)
+  background-color: var(--color-black)
+  color: var(--color-white)
+
 .bg-color-red
   background-color: var(--color-red)
 
 .cursor-pointer
   cursor: pointer
+
+.mt-navbar
+  margin-top: var(--navbar-height) !important
+
+.pt-navbar
+  padding-top: var(--navbar-height) !important

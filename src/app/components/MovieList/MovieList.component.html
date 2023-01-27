@@ -1,0 +1,36 @@
+  <app-NavBar [MovieListComponent]="this"></app-NavBar>
+  <app-Filters [MovieListComponent]="this"></app-Filters>
+
+<div class="movie_list_wrapper" [ngClass]="!collapseFilters?'inactive':''">
+  <div class="movie_list_container m-0 pt-navbar d-grid" >
+  <!-- [ngStyle]="{top: changeTranformY()}"> -->
+    <div class="d-flex gap-2 flex-wrap justify-content-center my-2 p-0">
+
+      <ng-container  *ngFor="let Movie of movieList; let i = index">
+
+        <a class="card_movie cursor-pointer" (click)="movieClick(Movie)" routerLink="/Movie">
+
+          <div class="last-movie" *ngIf="(i + 5 == movieList.length) && lastPage() > currentPage()" #lastMovie></div>
+
+          <div class="card_img_box">
+            <img src={{imgUrl+Movie.poster_path}} class="card_img" alt="">
+          </div>
+
+          <div class="card_title">
+            <p class="m-0">{{Movie.title}}</p>
+          </div>
+
+            <!-- <p class="card_vote">
+              <small class="vote_number">{{Movie.vote_average}} <i class="uis uis-star"></i></small>
+            </p> -->
+
+        </a>
+
+
+      </ng-container>
+    </div>
+
+    <button class="btn btn-primary rounded-pill btn-go-up text-bg-dark" [ngClass]="hasScrollWindow? 'active':''" (click)="goUpBtn()"><i class="uis uis-angle-up"></i></button>
+    <button class="btn btn-primary my-4 mx-5" (click)="loadMore(true)" *ngIf="!loadMorePressed && lastPage() > currentPage()">CARREGAR MAIS</button>
+  </div>
+</div>

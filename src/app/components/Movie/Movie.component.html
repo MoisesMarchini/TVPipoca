@@ -1,0 +1,49 @@
+<app-NavBar></app-NavBar>
+
+<div class="container-fluid p-0 m-0">
+
+  <header>
+
+    <div class="bg-poster">
+      <img src="{{imgUrl+MovieDetails?.backdrop_path}}" alt="">
+    </div>
+
+    <div class="header_content container pb-2">
+      <p class="p-0 m-0">
+        <!-- {{movieReleaseDate.getUTCDay()+1}}/ -->
+        <!-- {{movieReleaseDate.getMonth()+1}}/ -->
+        {{movieReleaseDate.getFullYear()}}
+      </p>
+      <div class="watch-provider-container mb-2" *ngIf="providerList.length > 0">
+        <p class="p-0 m-0">Disponível em: </p>
+        <ul class="watch-provider-list">
+          <li class="watch-provider-item"
+          *ngFor="let item of providerList, let i = index">
+            <img src="{{imgUrl+item.logo_path}}" alt="{{item.provider_name}}">
+          </li>
+        </ul>
+      </div>
+
+
+      <div class="watch_theater" *ngIf="isOnNowWatch()">
+        <p class="p-0 m-0">Em cartaz</p>
+      </div>
+
+      <h1 class="header_title">{{MovieDetails?.title}}</h1>
+      <p class="header_overview p-0 m-0">
+        {{MovieDetails?.overview}}
+      </p>
+
+      <div class="movie_genres_container"  *ngIf="(genres.length > 0)">
+        <ul class="genre_list">
+          <li class="genre_item" *ngFor="let genre of genres; let i = index">
+            {{genre.name}}
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+  </header>
+
+</div>

@@ -1,0 +1,34 @@
+*
+  transition: .3s ease
+  text-decoration: none
+
+.navbar
+  height: var(--navbar-height)
+  background-color: transparentize(#fff,1%)
+  z-index: 10000
+  overflow: hidden
+  top: 0
+  position: fixed
+  a
+    color: var(--color-white)
+
+.navbar.active
+  box-shadow: 0 0 4px 3px rgba(0,0 ,0 ,.25 )
+  background-color: var(--color-black)
+
+.navbar-brand
+  height: 100%
+  img
+    width: auto
+    height: 100%
+    mix-blend-mode: lighten
+
+.navbar-btns
+  height: 100%
+  align-items: center
+
+.btn_filters
+  width: 2rem
+  height: 2rem
+  line-height: 100%
+  text-align: center
