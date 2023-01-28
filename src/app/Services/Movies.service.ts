@@ -121,7 +121,6 @@ export class MoviesService {
     searchQuery += this.sortedBy + this.convertSortToQuery(filters.sortBy);
     searchQuery += this.queryPageUrl + page;
 
-    console.log(filters.keyWords, searchQuery);
     return this.http.get<ListResponse>(searchQuery);
 
   }
