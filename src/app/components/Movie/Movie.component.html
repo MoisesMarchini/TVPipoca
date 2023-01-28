@@ -8,12 +8,15 @@
       <img src="{{imgUrl+MovieDetails?.backdrop_path}}" alt="">
     </div>
 
-    <div class="header_content container pb-2">
-      <p class="p-0 m-0">
-        <!-- {{movieReleaseDate.getUTCDay()+1}}/ -->
-        <!-- {{movieReleaseDate.getMonth()+1}}/ -->
-        {{movieReleaseDate.getFullYear()}}
-      </p>
+    <div class="header_content container pb-3">
+      <div class="release_info d-flex align-items-center gap-1">
+        <p class="watch_theater tag active" *ngIf="isOnNowWatch()">Em cartaz</p>
+        <p class="p-0 m-0">
+          <!-- {{movieReleaseDate.getUTCDay()+1}}/ -->
+          <!-- {{movieReleaseDate.getMonth()+1}}/ -->
+          {{movieReleaseDate.getFullYear()}}
+        </p>
+      </div>
       <div class="watch-provider-container mb-2" *ngIf="providerList.length > 0">
         <p class="p-0 m-0">Disponível em: </p>
         <ul class="watch-provider-list">
@@ -25,18 +28,15 @@
       </div>
 
 
-      <div class="watch_theater" *ngIf="isOnNowWatch()">
-        <p class="p-0 m-0">Em cartaz</p>
-      </div>
 
-      <h1 class="header_title">{{MovieDetails?.title}}</h1>
+      <h1 class="header_title display-1">{{MovieDetails?.title}}</h1>
       <p class="header_overview p-0 m-0">
         {{MovieDetails?.overview}}
       </p>
 
       <div class="movie_genres_container"  *ngIf="(genres.length > 0)">
         <ul class="genre_list">
-          <li class="genre_item" *ngFor="let genre of genres; let i = index">
+          <li class="genre_item tag opa-1" *ngFor="let genre of genres; let i = index">
             {{genre.name}}
           </li>
         </ul>

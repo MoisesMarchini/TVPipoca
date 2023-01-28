@@ -28,8 +28,8 @@
   position: relative;
   color: white;
   border-style: solid;
-  border-width: 0px;
-  border-color: transparent;
+  border-width: 4px;
+  border-color: black;
   background-color: var(--color-primary);
   border-radius: 20px;
 }
@@ -61,8 +61,10 @@
 .card_movie:hover {
   border-width: 4px;
   transform: scale(1.025);
+  border-color: var(--color-primary-active);
+  background-color: var(--color-primary-active);
   .card_title{
-    background-color: var(--color-primary);
+    background-color: var(--color-primary-active);
   }
 }
 
@@ -88,20 +90,38 @@
 }
 
 .btn-go-up{
+  border: none;
   position: fixed;
+  z-index: 10;
+  padding: 0 0 6px;
   bottom: -80px;
   right: 20px;
   width: 48px;
   height: 48px;
-  display: inline-flex;
+  display: flex;
+  text-align: center;
   justify-content: center;
   align-items: center;
   font-size: 3em;
-  padding-bottom: .75rem;
+  line-height: 100%;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  color: white;
+  box-shadow: 0px 0px 4px 2px black;
+}
+
+.btn-go-up:hover{
+  transform: scale(1.05);
+  background-color: var(--color-primary-active);
 }
 
 .btn-go-up.active{
   bottom: 20px;
+}
+
+.btn_loadmore{
+  width: calc(80% - 80px);
+  margin: 1.5rem auto;
 }
 
 .btn-clear{

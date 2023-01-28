@@ -19,4 +19,9 @@ export class Filters {
   voteCountMax = 0;
 
   keyWords: string = "";
+
+  constructor(params?: Partial<Filters>) {
+    if (params)
+      Object.assign(this, params);
+  }
 }

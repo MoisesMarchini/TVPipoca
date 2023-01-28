@@ -146,6 +146,10 @@ export class FiltersComponent implements OnInit {
     this._filters.voteCountMin = target.value * 100;
   }
 
+  getVoteCount(): number {
+    return this._filters.voteCountMin / 100;
+  }
+
   setKeywords(target: any): void {
     this.convertKeywordsToId(target.value);
   }
@@ -163,6 +167,13 @@ export class FiltersComponent implements OnInit {
       FiltersComponent.staticFilters = this._filters;
       listComponent.getMovies();
     }, 100);
+  }
+
+  static setFilters(_filters: Filters, _date?: string) {
+    if (_date)
+      _filters.primaryReleaseDate = _date;
+
+    FiltersComponent.staticFilters = _filters;
   }
 
 }

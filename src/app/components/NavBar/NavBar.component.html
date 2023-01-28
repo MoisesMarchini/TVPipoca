@@ -2,12 +2,12 @@
 [ngClass]="((hasScrollWindow || movieListComponent?.collapseFilters == false)?'active':'')"
 id="navbar">
   <div class="container nav_content d-flex justify-content-between">
-    <a class="navbar-brand d-flex align-items-center" routerLink="/MovieList">
+    <a class="navbar-brand d-flex align-items-center" routerLink="/Home">
       <!-- <img src="../../assets/5.png" alt="" srcset=""> -->
       TV Pipoca
     </a>
     <div class="navbar-btns d-flex">
-      <button *ngIf="movieListComponent" class="btn btn-dark rounded-pill btn_filters m-0 p-0"
+      <button *ngIf="movieListComponent" class="btn btn-primary rounded-pill btn_filters m-0 p-0"
       (click)="movieListComponent.changeCollapseFilter()">
         <i class="uil uil-filter"></i>
       </button>

@@ -7,6 +7,7 @@ import { Filters } from 'src/app/Domain/Filters';
 import { WatchProvider } from 'src/app/Domain/Models/WatchProvider';
 import { ConditionalExpr } from '@angular/compiler';
 import { FiltersComponent } from '../Filters/Filters.component';
+import { MovieComponent } from '../Movie/Movie.component';
 
 @Component({
   selector: 'app-MovieList',
@@ -20,7 +21,6 @@ export class MovieListComponent implements OnInit, AfterViewInit {
 
   imgUrl = 'https://image.tmdb.org/t/p/w440_and_h660_face/';
 
-  static selectedMovie: Movie | undefined;
 
   movieList: Movie[] = [];
   responseList?: ListResponse;
@@ -181,7 +181,7 @@ export class MovieListComponent implements OnInit, AfterViewInit {
   }
 
   movieClick(movie: Movie) {
-    MovieListComponent.selectedMovie = movie;
+    MovieComponent.selectedMovie = movie;
   }
 
 }

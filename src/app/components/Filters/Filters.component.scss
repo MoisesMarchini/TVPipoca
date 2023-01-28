@@ -1,5 +1,6 @@
 *{
   list-style: none;
+  transition: .3s ease;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -14,7 +15,7 @@ h1,h2,h3,h4,h5,h6{
   transition: .3s ease;
   position: fixed;
   top: 0;
-  right: -100vw;
+  right: -430px;
   width: 100%;
   max-width: 420px;
   height: 100vh;
@@ -34,15 +35,47 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .filter-body{
+  position: relative;
   font-size: .875rem !important;
-  ul li.btn{
-    font-size: .875rem !important;
-  }
 }
 
 .filter-item{
   padding: 0;
   margin: 0;
+}
+
+.vote_range{
+  -webkit-appearance: none;
+  width: 100%;
+  height: 12px;
+  background: var(--color-primary);
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  border-radius: 20px;
+}
+
+.vote_range:hover{
+  opacity: 1;
+}
+
+.vote_range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  aspect-ratio: 1/1;
+  border-radius: 25px;
+  background: var(--color-primary-active);
+  cursor: pointer;
+}
+
+.vote_range::-moz-range-thumb {
+  width: 20px;
+  aspect-ratio: 1/1;
+  background: var(--color-primary-active);
+  border-radius: 25px;
+  cursor: pointer;
 }
 
 .vote_count_number{

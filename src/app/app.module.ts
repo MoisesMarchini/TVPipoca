@@ -15,6 +15,7 @@ import { FooterComponent } from './components/Footer/Footer.component';
 import { NavBarComponent } from './components/NavBar/NavBar.component';
 import { MovieComponent } from './components/Movie/Movie.component';
 import { FiltersComponent } from "./components/Filters/Filters.component";
+import { HomeComponent } from './components/Home/Home.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FiltersComponent } from "./components/Filters/Filters.component";
       FooterComponent,
       NavBarComponent,
       MovieComponent,
-      FiltersComponent
+      FiltersComponent,
+      HomeComponent
    ],
   imports: [
     BrowserModule,

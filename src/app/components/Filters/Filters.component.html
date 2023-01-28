@@ -5,15 +5,15 @@
 
     <!-- SORT BY -->
     <div class="filter-item" id="sortby_filter">
-      <h6 class="filter-header align-itens-center" id="flush-headingOne">
+      <h6 class="filter-header align-itens-center">
           Ordenar por:
       </h6>
 
       <div class="filter-body w-100">
-        <button class="w-100 btn btn-outline-secondary text-start" (click)="collapseSortBy = !collapseSortBy">
+        <button type="button" class="w-100 btn btn-outline-secondary text-start" (click)="collapseSortBy = !collapseSortBy">
           {{getCurrentSortByString()}}
         </button>
-        <ul class="dropdown-menu dropdown-menu-end" [ngClass]="!collapseSortBy?'show':''">
+        <ul class="dropdown-menu w-100 dropdown-menu-end" [ngClass]="!collapseSortBy?'show':''">
 
           <li class="dropdown-item cursor-pointer"
           *ngFor="let item of sortByAsStringArray; let i = index"
@@ -33,7 +33,7 @@
     <div class="filter-item" id="voteCount_filter">
 
       <h6 class="filter-header">Votos Mínimos</h6>
-      <input type="range" class="form-range" min="0" max="10" value="0" id="customRange2" (submit)="setVoteCount($event.target)">
+      <input type="range" class="vote_range" min="0" max="10" value="{{getVoteCount()}}" (change)="setVoteCount($event.target)">
       <ul class="d-flex p-0 px-1 m-0 justify-content-between text-muted">
         <li class="vote_count_number">0</li>
         <li class="vote_count_number">1000</li>
@@ -65,9 +65,9 @@
       <div class="filter-body">
 
           <ul class="genre_list d-flex flex-wrap gap-2 p-0 mb-2" *ngIf="_genreList!=[]">
-            <li class="btn rounded-pill btn-sm"
+            <li class="tag cursor-pointer"
             *ngFor="let genre of _genreList"
-            [ngClass]="(_filters.genres.includes(genre))?'btn-light':'btn-outline-light'"
+            [ngClass]="(_filters.genres.includes(genre))?'active':''"
             (click)="addGenreToFilter(genre)">
                 {{genre.name}}
             </li>
@@ -79,6 +79,6 @@
 
   <hr>
 
-  <button type="submit" class="btn btn-primary w-100" >Procurar</button>
+  <button type="submit" class="btn btn-primary active w-100 btn_search">Buscar</button>
 
 </form>

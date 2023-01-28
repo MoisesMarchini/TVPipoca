@@ -24,6 +24,9 @@ export class MoviesService {
   providersListUrl =
     `${this.baseUrl}movie/{movie_id}/watch/providers?api_key=${this.apiKey}`
 
+  trendingListUrl =
+    `${this.baseUrl}trending/movie/week?api_key=${this.apiKey}`
+
   creditsUrl =
     `${this.baseUrl}movie/{movie_id}/credits?api_key=${this.apiKey}&language=pt-BR`
 
@@ -121,6 +124,10 @@ export class MoviesService {
     console.log(filters.keyWords, searchQuery);
     return this.http.get<ListResponse>(searchQuery);
 
+  }
+
+  getTrendingMovies(): Observable<ListResponse> {
+    return this.http.get<ListResponse>(this.trendingListUrl);
   }
 
   getKeywordId(keyword: string): Observable<ListKeywords>{

@@ -19,7 +19,8 @@ import { MovieListComponent } from '../MovieList/MovieList.component';
 })
 export class MovieComponent implements OnInit {
 
-  MovieDetails = MovieListComponent.selectedMovie;
+  static selectedMovie: Movie | undefined;
+  MovieDetails = MovieComponent.selectedMovie;
 
   providerList: WatchProvider[] = [];
   actorsList: Actor[] = [];

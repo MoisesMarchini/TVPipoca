@@ -1,0 +1,141 @@
+*
+  transition: .3s ease
+  list-style-type: none
+
+#featured_movies
+  height: 100vh
+
+.carousel-inner
+  width: 100%
+  height: 100%
+  cursor: pointer
+
+.carousel-indicators
+  display: flex
+  gap: .25rem
+
+.carousel_indicator
+  background-color: var(--color-primary)
+  width: 1rem
+  height: .25rem
+  border-width: 0
+  border-radius: 10px
+  opacity: .7
+
+.carousel_indicator.active
+  background-color: var(--color-primary-active)
+  opacity: 1
+  width: 3rem
+
+.carousel-item
+  cursor: pointer
+  width: 100%
+  height: 100%
+  display: flex
+  opacity: 0
+  pointer-events: none
+
+.slide-prev
+  transform: translateX(-40%)
+
+.slide-next
+  transform: translateX(40%)
+
+.carousel-item.active
+  opacity: 1
+  transform: translateX(0)
+  pointer-events: all
+
+.carousel-item-img-wrapper
+  width: 100%
+  height: 100%
+  display: flex
+  justify-content: center
+  img
+    opacity: .25
+    width: auto
+    height: 100%
+    z-index: 1
+  @media (min-width: 900px)
+    img
+      width: 100%
+      height: auto
+      object-fit: cover
+
+.carousel-item-text
+  position: absolute
+  z-index: 5
+  margin: 0 10vw
+  width: 80vw
+  height: 100%
+  padding-bottom: 5rem
+  display: flex
+  flex-direction: column
+  justify-content: flex-end
+
+section
+  margin: 2.5rem 0 1.875rem
+
+.section_header
+  display: flex
+  justify-content: space-between
+  vertical-align: middle
+  align-content: center
+  margin-bottom: 1rem
+  flex-wrap: wrap
+  >*
+    margin: 0
+
+.section_nav
+  display: flex
+  gap: .5rem
+  border-radius: 10px
+  overflow: hidden
+  background-color: var(--color-primary)
+  justify-content: center
+  align-items: center
+  text-align: center
+  .section_nav_item
+    flex-grow: 1
+    padding: .25rem .5rem
+    border-radius: 10px
+  .section_nav_item.active
+    background-color: var(--color-primary-active)
+
+.section_content
+  padding: 0
+  margin: 0
+
+.wrapper
+  padding: 0 2rem
+  margin: 0
+  display: flex
+  flex-wrap: wrap
+  width: 100%
+  overflow-x: scroll
+  .card_movies
+    padding: 0
+    margin: 0
+    display: flex
+    flex-wrap: nowrap
+    gap: 2rem
+    .card_movie
+      width: 180px
+      cursor: pointer
+      .card_movie_title
+        padding: .25rem
+        width: 100%
+      .card_movie_img_area
+        width: 100%
+        aspect-ratio: 3/5
+        border-radius: 10px
+        overflow: hidden
+        background: var(--color-primary)
+        img
+          border-radius: 10px
+          width: 100%
+          height: 100%
+          object-fit: cover
+
+.card_movie:hover .card_movie_img_area img
+  transform: scale(1.05)
