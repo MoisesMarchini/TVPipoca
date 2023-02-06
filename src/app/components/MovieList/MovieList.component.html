@@ -1,16 +1,14 @@
-  <app-NavBar [MovieListComponent]="this"></app-NavBar>
-  <app-Filters [MovieListComponent]="this"></app-Filters>
 
-<div class="movie_list_wrapper" [ngClass]="!collapseFilters?'inactive':''">
+<div class="movie_list_wrapper" [ngClass]="!_collapseFilters?'inactive':''">
   <div class="movie_list_container m-0 pt-navbar d-grid" >
   <!-- [ngStyle]="{top: changeTranformY()}"> -->
     <div class="d-flex gap-2 flex-wrap justify-content-center my-2 p-0">
 
-      <ng-container  *ngFor="let Movie of movieList; let i = index">
+      <ng-container  *ngFor="let Movie of _movieList; let i = index">
 
         <a class="card_movie cursor-pointer" (click)="movieClick(Movie)" routerLink="/Movie">
 
-          <div class="last-movie" *ngIf="(i + 5 == movieList.length) && lastPage() > currentPage()" #lastMovie></div>
+          <div class="last-movie" *ngIf="(i + 5 == _movieList.length) && lastPage() > currentPage()" #lastMovie></div>
 
           <div class="card_img_box">
             <img src={{imgUrl+Movie.poster_path}} class="card_img" alt="">
@@ -31,6 +29,6 @@
     </div>
 
     <button class="btn-go-up" [ngClass]="hasScrollWindow? 'active':''" (click)="goUpBtn()"><i class="uis uis-angle-up"></i></button>
-    <button class="btn btn-primary btn_loadmore" (click)="loadMore(true)" *ngIf="!loadMorePressed && lastPage() > currentPage()">CARREGAR MAIS</button>
+    <button class="btn btn-primary btn_loadmore" (click)="loadMore(true)" *ngIf="!_loadMorePressed && lastPage() > currentPage()">CARREGAR MAIS</button>
   </div>
 </div>

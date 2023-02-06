@@ -1,5 +1,3 @@
-<app-NavBar></app-NavBar>
-
 <div class="container-fluid p-0 m-0">
 
   <header>
@@ -20,8 +18,7 @@
       <div class="watch-provider-container mb-2" *ngIf="providerList.length > 0">
         <p class="p-0 m-0">Disponível em: </p>
         <ul class="watch-provider-list">
-          <li class="watch-provider-item"
-          *ngFor="let item of providerList, let i = index">
+          <li class="watch-provider-item" *ngFor="let item of providerList, let i = index">
             <img src="{{imgUrl+item.logo_path}}" alt="{{item.provider_name}}">
           </li>
         </ul>
@@ -34,7 +31,7 @@
         {{MovieDetails?.overview}}
       </p>
 
-      <div class="movie_genres_container"  *ngIf="(genres.length > 0)">
+      <div class="movie_genres_container" *ngIf="(genres.length > 0)">
         <ul class="genre_list">
           <li class="genre_item tag opa-1" *ngFor="let genre of genres; let i = index">
             {{genre.name}}

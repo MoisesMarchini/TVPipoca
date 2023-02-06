@@ -1,14 +1,19 @@
 <nav class="navbar navbar-expand-lg w-100"
-[ngClass]="((hasScrollWindow || movieListComponent?.collapseFilters == false)?'active':'')"
+[ngClass]="((hasScrollWindow || collapseFilters == false)?'active':'')"
 id="navbar">
   <div class="container nav_content d-flex justify-content-between">
-    <a class="navbar-brand d-flex align-items-center" routerLink="/Home">
-      <!-- <img src="../../assets/5.png" alt="" srcset=""> -->
-      TV Pipoca
-    </a>
+    <div class="navbar-left d-flex align-items-center gap-2">
+      <button class="btn btn-primary rounded-pill btn_back m-0 p-0"
+      *ngIf="router.url != '/Home'" (click)="backButton()">
+        <i class="uil uil-arrow-left"></i>
+      </button>
+      <a class="navbar-brand d-flex align-items-center" routerLink="/Home">
+        TV Pipoca
+      </a>
+    </div>
     <div class="navbar-btns d-flex">
-      <button *ngIf="movieListComponent" class="btn btn-primary rounded-pill btn_filters m-0 p-0"
-      (click)="movieListComponent.changeCollapseFilter()">
+      <button *ngIf="router.url === '/MovieList'" class="btn btn-primary rounded-pill btn_filters m-0 p-0"
+      (click)="changeCollapseFilter()">
         <i class="uil uil-filter"></i>
       </button>
     </div>

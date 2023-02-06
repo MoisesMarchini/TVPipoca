@@ -16,6 +16,7 @@ import { MovieComponent } from '../Movie/Movie.component';
 })
 export class HomeComponent implements OnInit {
 
+  carouselInterval = 5;
   maxCarouselItems = 5;
   headerCarousel = 0;
 
@@ -49,6 +50,18 @@ export class HomeComponent implements OnInit {
     this.getNewReleasesMovies();
     this.getMostPopularMovies("alltime");
     this.getMostReviewsMovies("alltime");
+    this.carouselAnimated(this.carouselInterval);
+  }
+
+  carouselAnimated(defaultInterval: number) {
+    setInterval(() => {
+      if (this.carouselInterval < 1) {
+        this.carouselInterval = defaultInterval /2;
+        return;
+      }
+      this.carouselNext();
+      this.carouselInterval = defaultInterval;
+    }, defaultInterval * 1000)
   }
 
   carouselSet(slide: number) {
@@ -57,10 +70,12 @@ export class HomeComponent implements OnInit {
 
   carouselNext() {
     this.carouselSet(this.carouselGetNext());
+    this.carouselInterval = 0;
   }
 
   carouselPrevious() {
     this.carouselSet(this.carouselGetPrevious());
+    this.carouselInterval = 0;
   }
 
   carouselGetNext() {
@@ -190,10 +205,46 @@ export class HomeComponent implements OnInit {
     }
 
     FiltersComponent.setFilters(filter);
+
   }
 
   movieClick(movie: Movie) {
     MovieComponent.selectedMovie = movie;
+  }
+
+  scrollWrapper(elementId: string, scroll: number = 1) {
+    let wrapperIdentifier = elementId + '_wrapper';
+    let wrapperElement = document.getElementById(wrapperIdentifier);
+    if (!wrapperElement)
+      return;
+
+    let cardWidth = 180;
+    let cardGap = 4;
+    let newPos = cardWidth + cardGap;
+
+    if (scroll < 0)
+      newPos *= -1;
+
+    wrapperElement.scrollLeft += newPos;
+
+    let controlLeftIdentifier = elementId + '_control_left';
+    let controlRightIdentifier = elementId + '_control_right';
+    let controlLeftElement = document.getElementById(controlLeftIdentifier);
+    let controlRightElement = document.getElementById(controlRightIdentifier);
+    let maxScrollLeft = wrapperElement.scrollWidth - wrapperElement.clientWidth;
+
+    if (!controlLeftElement || !controlRightElement)
+      return
+
+    if (wrapperElement.scrollLeft + newPos >= maxScrollLeft)
+      controlRightElement.classList.add('inactive');
+    else
+      controlRightElement.classList.remove('inactive');
+
+    if (wrapperElement.scrollLeft + newPos <= 0)
+      controlLeftElement.classList.add('inactive');
+    else
+      controlLeftElement.classList.remove('inactive');
   }
 
 }

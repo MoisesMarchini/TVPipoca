@@ -1,5 +1,4 @@
-
-<div class="m-0 p-0">
+<app-NavBar></app-NavBar>
+<app-Filters *ngIf="router.url === '/MovieList'"></app-Filters>
 <router-outlet></router-outlet>
 <app-Footer></app-Footer>
-</div>

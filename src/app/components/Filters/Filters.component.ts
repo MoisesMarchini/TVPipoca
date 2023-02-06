@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Filters } from 'src/app/Domain/Filters';
 import { Genre } from 'src/app/Domain/Models/Genre';
 import { ListGenres } from 'src/app/Domain/Models/ListGenres';
@@ -14,11 +14,10 @@ import { MovieListComponent } from '../MovieList/MovieList.component';
 })
 export class FiltersComponent implements OnInit {
 
-  @Input("MovieListComponent") movieListComponent: MovieListComponent | undefined;
-
   collapseSortBy = true;
   static staticFilters: Filters = new Filters();
   static genreList: Genre[] = [];
+  static collapseFilters = true;
 
   _filters = FiltersComponent.staticFilters;
   _genreList = FiltersComponent.genreList;
@@ -28,14 +27,25 @@ export class FiltersComponent implements OnInit {
   collapseKeyword = true;
 
   constructor(private moviesService: MoviesService) {
-    this.getGenreList();
-    this._filters = FiltersComponent.staticFilters;
   }
 
   ngOnInit() {
+    this.getGenreList();
     this.convertSortByEnumToArray();
+    this._filters = FiltersComponent.staticFilters;
   }
 
+  get _collapseFilters() {
+    return FiltersComponent.collapseFilters;
+  }
+
+  static changeCollapseFilter(): void{
+    FiltersComponent.collapseFilters = !FiltersComponent.collapseFilters;
+  }
+
+  _changeCollapseFilter(): void{
+    FiltersComponent.changeCollapseFilter();
+  }
 
   getGenreList(): void{
     if (FiltersComponent.genreList.length > 0)
@@ -156,16 +166,11 @@ export class FiltersComponent implements OnInit {
 
   searchButton(): void{
 
-    if (!this.movieListComponent)
-      return;
-
-    let listComponent = this.movieListComponent;
-
-    listComponent.changeCollapseFilter();
-    listComponent.movieList = [];
+    this._changeCollapseFilter();
+    MovieListComponent.movieList = [];
     setTimeout(() => {
       FiltersComponent.staticFilters = this._filters;
-      listComponent.getMovies();
+      MovieListComponent.getMovies();
     }, 100);
   }
 

@@ -1,5 +1,5 @@
-<form (ngSubmit)="searchButton()" novalidate class="filter_list p-3" [ngClass]="!movieListComponent?.collapseFilters?'active':''">
-  <h3 class="title cursor-pointer" (click)="movieListComponent?.changeCollapseFilter()"><i class="uis uis-angle-left"></i>Filtros</h3>
+<form (ngSubmit)="searchButton()" novalidate class="filter_list p-3" [ngClass]="!_collapseFilters?'active':''">
+  <h3 class="title cursor-pointer" (click)="_changeCollapseFilter()"><i class="uis uis-angle-left"></i>Filtros</h3>
 
   <hr>
 

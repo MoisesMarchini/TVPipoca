@@ -22,17 +22,20 @@ export class MovieListComponent implements OnInit, AfterViewInit {
   imgUrl = 'https://image.tmdb.org/t/p/w440_and_h660_face/';
 
 
-  movieList: Movie[] = [];
-  responseList?: ListResponse;
+  static movieList: Movie[] = [];
+  get _movieList() { return MovieListComponent.movieList; };
+  static responseList?: ListResponse;
   observer: any;
-  loadMorePressed = false;
 
-  collapseFilters = true;
+  static loadMorePressed = false;
+  get _loadMorePressed() { return MovieListComponent.loadMorePressed };
+  static moviesService: MoviesService;
+  get _collapseFilters() { return FiltersComponent.collapseFilters};
 
   public lastPage = () => {
 
-    if (this.responseList != null)
-      return Math.min(500, this.responseList?.total_pages);
+    if (MovieListComponent.responseList != null)
+      return Math.min(500, MovieListComponent.responseList.total_pages);
 
     return 1;
   };
@@ -41,31 +44,32 @@ export class MovieListComponent implements OnInit, AfterViewInit {
   };
   public currentPage = () => {
 
-    if (this.responseList != null)
-      return this.responseList?.page;
+    if (MovieListComponent.responseList != null)
+      return MovieListComponent.responseList.page;
 
     return 1;
   };
   public nextPage = () => {
 
-    if (this.responseList != null)
-      return this.responseList?.page + 1;
+    if (MovieListComponent.responseList != null)
+      return MovieListComponent.responseList.page + 1;
 
     return 1;
   };
   public prevPage = () => {
 
-    if (this.responseList != null)
-      return this.responseList?.page - 1;
+    if (MovieListComponent.responseList != null)
+      return MovieListComponent.responseList.page - 1;
 
     return 1;
   };
 
-  constructor(private moviesService: MoviesService) {
+  constructor(private _moviesService: MoviesService) {
+    MovieListComponent.moviesService = this._moviesService;
   }
 
   ngOnInit(): void {
-    this.getMovies();
+    MovieListComponent.getMovies();
     this.intersectionObserver();
   }
 
@@ -83,21 +87,21 @@ export class MovieListComponent implements OnInit, AfterViewInit {
   loadMore(fetch: boolean): void{
     if (!fetch)
       return;
-    this.getMovies(this.currentPage() + 1);
-    this.loadMorePressed = true;
+      MovieListComponent.getMovies(this.currentPage() + 1);
+    MovieListComponent.loadMorePressed = true;
   }
 
-  getMovies(page?: number): void {
-    this.loadMorePressed = false;
+  static getMovies(page?: number): void {
+    MovieListComponent.loadMorePressed = false;
 
-    this.moviesService.getAllMovies(FiltersComponent.staticFilters, page).subscribe(
+    MovieListComponent.moviesService.getAllMovies(FiltersComponent.staticFilters, page).subscribe(
       (listResp: ListResponse) => {
-        this.responseList = listResp;
+        MovieListComponent.responseList = listResp;
 
         if (page != undefined && page > 1)
-          this.movieList = this.movieList.concat(listResp.results);
+          MovieListComponent.movieList = MovieListComponent.movieList.concat(listResp.results);
         else
-          this.movieList = listResp.results;
+          MovieListComponent.movieList = listResp.results;
 
       },
       error => console.log(error)
@@ -141,12 +145,12 @@ export class MovieListComponent implements OnInit, AfterViewInit {
     this.hasScrollWindow = false;
   }
 
-  changeTranformY() {
-    if (this.collapseFilters)
-      return;
-    let result = -MovieListComponent.scrollY +"px";
-    return result;
-  }
+  // changeTranformY() {
+  //   if (this._collapseFilters)
+  //     return;
+  //   let result = -MovieListComponent.scrollY +"px";
+  //   return result;
+  // }
 
 
   intersectionObserver() {
@@ -159,7 +163,7 @@ export class MovieListComponent implements OnInit, AfterViewInit {
     this.observer = new IntersectionObserver((entries) => {
 
       if (entries[0].isIntersecting) {
-        this.loadMore(this.loadMorePressed);
+        this.loadMore(MovieListComponent.loadMorePressed);
       }
 
     }, options);
@@ -173,11 +177,8 @@ export class MovieListComponent implements OnInit, AfterViewInit {
   ///////////////       MISC       ///////////////
   ////////////////////////////////////////////////
 
-  changeCollapseFilter(): void{
-    this.collapseFilters = !this.collapseFilters;
-    // setTimeout(() => {
-    //   window.scrollTo(0, MovieListComponent.scrollY);
-    // }, 3);
+  _changeCollapseFilter(): void{
+    FiltersComponent.changeCollapseFilter();
   }
 
   movieClick(movie: Movie) {

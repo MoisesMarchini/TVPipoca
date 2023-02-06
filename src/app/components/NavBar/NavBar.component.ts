@@ -1,5 +1,7 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { MovieListComponent } from '../MovieList/MovieList.component';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Location } from '@angular/common'
+import { Router } from '@angular/router';
+import { FiltersComponent } from '../Filters/Filters.component';
 
 @Component({
   selector: 'app-NavBar',
@@ -8,24 +10,34 @@ import { MovieListComponent } from '../MovieList/MovieList.component';
 })
 export class NavBarComponent implements OnInit {
 
-  @Input("MovieListComponent") movieListComponent: MovieListComponent | undefined;
+  hasScrollWindow = false;
 
-  constructor() { }
+  get collapseFilters() {
+    return FiltersComponent.collapseFilters;
+  }
 
-  ngOnInit() {
+  constructor(public router: Router, private location: Location) {
 
   }
 
+  ngOnInit(): void {
+  }
 
+  backButton() {
+    this.location.back();
+  }
+
+  changeCollapseFilter(){
+    FiltersComponent.changeCollapseFilter();
+  }
 
   @HostListener('window:scroll', ['$event']) onScroll() {
     if (window.scrollY > 10){
       this.hasScrollWindow = true;
-      return
+      return;
     }
 
     this.hasScrollWindow = false;
   }
-  hasScrollWindow = false;
 
 }

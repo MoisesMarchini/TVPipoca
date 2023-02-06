@@ -25,7 +25,7 @@ export class MoviesService {
     `${this.baseUrl}movie/{movie_id}/watch/providers?api_key=${this.apiKey}`
 
   trendingListUrl =
-    `${this.baseUrl}trending/movie/week?api_key=${this.apiKey}`
+    `${this.baseUrl}trending/movie/week?api_key=${this.apiKey}&language=pt-BR`
 
   creditsUrl =
     `${this.baseUrl}movie/{movie_id}/credits?api_key=${this.apiKey}&language=pt-BR`
